@@ -1,0 +1,13 @@
+{
+    "name": "angularjs-test",
+    "devDependencies": {
+        "requirejs": "~2.1.14",
+        "jquery": "^1.7.2",
+        "html5shiv": "3.6.2pre",
+        "poly": "dev",
+        "when": "*",
+        "angular": "*",
+
+        "salespages-ui" : "https://stash.englishtown.com/scm/cosam/salespages-ui-shared.git#e55a24cbbcc5f88a919aff593aaf26f53a8b3254"
+    }
+}
