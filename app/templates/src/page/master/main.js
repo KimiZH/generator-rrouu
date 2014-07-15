@@ -12,6 +12,6 @@
     cssRender(cssTxt).then(cssReady);
 
     function cssReady() {
-
+        // code
     }
 });

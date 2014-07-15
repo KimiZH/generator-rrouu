@@ -1,5 +1,5 @@
 {
-    "name": "angularjs-test",
+    "name": "my-app",
     "version": "0.0.0",
     "devDependencies": {
         "extend": "~1.2.1",

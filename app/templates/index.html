@@ -7,15 +7,14 @@
     endrelease -->
     <script type="text/javascript">
         var config = {
-                "app": "my-app"
+                "app": "my-app",
+                "context": "rrouu"
             };
     </script>
     <!-- debug: -->
     <script type="text/javascript">
         config.isDebug = true;
-        config.singleCacheSvr = "http://cache.englishtown.com";
-        config.baseUrl = "http://localcenter.ef.com.cn/_scripts/src/" + config.app;
-        config.bower_components = config.baseUrl + "/bower_components";
+        config.singleCacheSvr = "http://localhost:9000";
         config.leadsform = {
             "handler": ((navigator.appName == "Microsoft Internet Explorer" ? (parseInt(navigator.appVersion.replace(/.*?MSIE\s([\d\.]+).*/ig, "$1")) > 6 ? false : true) : false) ? "http://" : "https://") + "localsecure.englishtown.com/online/cn/cnleadshandler.ashx",
             "partner": "None",
@@ -35,8 +34,6 @@
     <!-- release:
     <script type="text/javascript">
         config.singleCacheSvr = "getContext::singleCacheSvr";
-        config.baseUrl = "./";
-        config.bower_components = config.baseUrl + "/bower_components";
         config.leadsform = {
             "handler": ((navigator.appName == "Microsoft Internet Explorer" ? (parseInt(navigator.appVersion.replace(/.*?MSIE\s([\d\.]+).*/ig, "$1")) > 6 ? false : true) : false) ? "http://" : "https://") + "getCCL::configuration.servers.secure2/online/cn/cnleadshandler.ashx",
             "partner": "getContext::partner",
@@ -49,12 +46,12 @@
     <script type="text/javascript" src="getContext::singleCacheSvr/_imgs/getContext::app/js/getContext::version/index.js"></script>
     endrelease -->
     <script type="text/javascript">
-        require.s.contexts.et.nextTick = function (fn) { fn(); };
-        require.config({ context: "et" })([config.app + "/page/index/main"]);
+        require.s.contexts[config.context].nextTick = function (fn) { fn(); };
+        require.config({context: config.context})([config.app + "/page/index/main"]);
     </script>
     <!-- release:
     <script type="text/javascript">
-        require.s.contexts.et.nextTick = require.nextTick;
+        require.s.contexts[config.context].nextTick = require.nextTick;
     </script>
     endrelease -->
 </head>

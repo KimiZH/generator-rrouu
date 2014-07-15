@@ -1,5 +1,5 @@
 {
-    "name": "angularjs-test",
+    "name": "my-app",
     "devDependencies": {
         "requirejs": "~2.1.14",
         "jquery": "^1.7.2",

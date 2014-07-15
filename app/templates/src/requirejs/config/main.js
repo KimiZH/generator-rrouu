@@ -1,7 +1,8 @@
 ﻿var require = (function (config) {
     config = config || {};
     var configRequire = {
-            "context": "et",
+            "context": "rrouu",
+            "baseUrl": "./",
             "paths": {
                 "bower_components": "./bower_components",
                 "_shared" : (config.singleCacheSvr || ".") + "/_shared",

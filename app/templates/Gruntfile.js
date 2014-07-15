@@ -1,7 +1,7 @@
 var extend = require('extend');
 module.exports = function(grunt) {
     var config = {
-            'app': 'my-app',
+            'app': 'my-app'
         },
         jsHints = getJSHints(),
         LESSs = getLESSs(),
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         version = grunt.file.readJSON('package.json').version,
         configConnect = {
             options: {
-                singleCacheSvr: 'http://cache.englishtown.com',
+                singleCacheSvr: 'http://localhost:9000',
                 hostname: 'localhost',
                 port: 9000,
                 livereload: 35729
@@ -230,10 +230,24 @@ module.exports = function(grunt) {
                 ],
                 dest: './dist/' + version + '/master.js',
             },
+            onepage: {
+                src: [
+                    './dist/' + version + '/master.js',
+                    './dist/' + version + '/index.js'
+                ],
+                dest: './dist/' + version + '/index.js'
+            }
         },
         clean: {
-            build: {
-                src: [filepathTmp]
+            tmp: {
+                src: [
+                    filepathTmp
+                ]
+            },
+            onepage: {
+                src: [
+                    './dist/' + version + '/master.js'
+                ]
             }
         }
     });
@@ -268,7 +282,7 @@ module.exports = function(grunt) {
             if (!mainGruntInitConfigRequireJS.optimize) {
                 grunt.config.escape('requirejs.' + excludePageName + '.options.optimize');
             }
-            grunt.task.run(['clean']);
+            grunt.task.run(['clean:tmp']);
         });
     }
 
@@ -295,6 +309,10 @@ module.exports = function(grunt) {
                 requirejsExcludeShallow[excludePageName]
             );
         }
+    });
+
+    grunt.registerTask('onepage', '', function () {
+        grunt.task.run(['concat:onepage', 'clean:onepage']);
     });
 
     grunt.registerTask('umbraco', '', function () {
@@ -341,7 +359,7 @@ module.exports = function(grunt) {
                 'requirejs:master',
                 'uglify:master',
                 'concat:master',
-                'clean'
+                'clean:tmp'
             ]);
         } else {
             grunt.registerTask(pageName, '', function () {
@@ -368,6 +386,8 @@ module.exports = function(grunt) {
                 arrRun.push('requirejs:' + pageName);
             }
         }
+
+        // arrRun.push('onepage');
 
         arrRun.push('umbraco');
 
