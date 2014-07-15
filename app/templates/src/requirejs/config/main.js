@@ -1,7 +1,7 @@
 ﻿var require = (function (config) {
     config = config || {};
     var configRequire = {
-            "context": "rrouu",
+            "context": config.context || "_",
             "baseUrl": "./",
             "paths": {
                 "bower_components": "./bower_components",

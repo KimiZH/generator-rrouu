@@ -58,16 +58,6 @@ module.exports = yeoman.generators.Base.extend({
             message: 'Input an app name',
             default: this.appname.replace(/ /ig, '-')
         }, {
-            type: 'input',
-            name: 'cdn',
-            message: 'CDN',
-            default: cdn
-        }, {
-            type: 'input',
-            name: 'contextRequire',
-            message: 'context',
-            default: contextRequire
-        }, {
             type: 'confirm',
             name: 'onepage',
             message: 'Has the project multiple pages ?'
@@ -96,10 +86,10 @@ module.exports = yeoman.generators.Base.extend({
     install: function () {
         var done = this.async();
 
-        this.npmInstall(['extend'], {}, function () {
-            // this.bowerInstall([], {}, function () {
+        this.npmInstall([], {}, function () {
+            this.bowerInstall([], {}, function () {
                 done();
-            // });
+            });
         }.bind(this));
     },
     end: function () {
@@ -122,6 +112,6 @@ module.exports = yeoman.generators.Base.extend({
 
         this.log('>>>>>>>>>>>>>>>>>>>>>>>>>>');
 
-        // this.spawnCommand('grunt', ['connect', 'watch']);
+        this.spawnCommand('grunt', ['connect', 'watch']);
     }
 });

@@ -8,12 +8,11 @@
     <script type="text/javascript">
         var config = {
                 "app": "my-app",
-                "context": "rrouu"
+                "context": "_"
             };
     </script>
     <!-- debug: -->
     <script type="text/javascript">
-        config.isDebug = true;
         config.singleCacheSvr = "http://localhost:9000";
         config.leadsform = {
             "handler": ((navigator.appName == "Microsoft Internet Explorer" ? (parseInt(navigator.appVersion.replace(/.*?MSIE\s([\d\.]+).*/ig, "$1")) > 6 ? false : true) : false) ? "http://" : "https://") + "localsecure.englishtown.com/online/cn/cnleadshandler.ashx",

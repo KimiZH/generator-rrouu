@@ -1,5 +1,5 @@
 ﻿define([
-    '../master/main'
+    '../master/main',
     'csstemplate!./main.css',
     'cssrender',
     'jquery'
