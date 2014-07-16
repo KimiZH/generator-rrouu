@@ -8,6 +8,6 @@
         "when": "*",
         "angular": "*",
 
-        "salespages-ui" : "https://stash.englishtown.com/scm/cosam/salespages-ui-shared.git#e55a24cbbcc5f88a919aff593aaf26f53a8b3254"
+        "salespages-ui-shared" : "https://stash.englishtown.com/scm/cosam/salespages-ui-shared.git#~0.2.0"
     }
 }

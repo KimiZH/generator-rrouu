@@ -1,6 +1,7 @@
 var yeoman = require('yeoman-generator'),
     file = yeoman.file,
     appname = '',
+    domainCDN = 'http://localhost:9000',
     onepage = false,
     mobile = false,
     bootstrap = false;
@@ -20,6 +21,16 @@ function parseAppName() {
 
     contents = file.read('./index.html');
     contents = contents.replace(/(\n? *?["']app["'] *?: *?["'])my-app(["'])/ig, '$1' + appname + '$2');
+    file.write('./index.html', contents);
+}
+
+function parseCDN() {
+    var contents = file.read('./Gruntfile.js');
+    contents = contents.replace(/(\n? *?singleCacheSvr *?: *?["'])http:\/\/localhost:9000(["'])/ig, '$1' + domainCDN + '$2');
+    file.write('./Gruntfile.js', contents);
+
+    contents = file.read('./index.html');
+    contents = contents.replace(/(\n? *?config\.singleCacheSvr *?= *?["'])http:\/\/localhost:9000(["'])/ig, '$1' + domainCDN + '$2');
     file.write('./index.html', contents);
 }
 
@@ -58,6 +69,11 @@ module.exports = yeoman.generators.Base.extend({
             message: 'Input an app name',
             default: this.appname.replace(/ /ig, '-')
         }, {
+            type: 'input',
+            name: 'domainCDN',
+            message: 'Do you have CDN ?',
+            default: domainCDN
+        }, {
             type: 'confirm',
             name: 'onepage',
             message: 'Has the project multiple pages ?'
@@ -71,8 +87,7 @@ module.exports = yeoman.generators.Base.extend({
             message: 'Do you want to use BootStrap(v3.11) ?'
         }], function (answers) {
             appname = answers.appname;
-            cdn = answers.cdn;
-            contextRequire = answers.contextRequire;
+            domainCDN = answers.domainCDN;
             onepage = !answers.onepage;
             mobile = answers.mobile;
             bootstrap = answers.bootstrap;
@@ -95,6 +110,9 @@ module.exports = yeoman.generators.Base.extend({
     end: function () {
         this.log('>>>>>>>> app name >>>>>>>>');
         parseAppName.apply(this);
+
+        this.log('>>>>>>>>>> cdn >>>>>>>>>>>');
+        parseCDN.apply(this);
 
         if (onepage) {
             this.log('>>>>>>>> onepage >>>>>>>>>');

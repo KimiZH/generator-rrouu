@@ -6,7 +6,7 @@
             "paths": {
                 "bower_components": "./bower_components",
                 "_shared" : (config.singleCacheSvr || ".") + "/_shared",
-                "salespages-ui": "./bower_components/salespages-ui/src",
+                "salespages-ui": "./bower_components/salespages-ui-shared/src",
                 "jquery": "./bower_components/jquery/jquery"
             },
             "shim": {
